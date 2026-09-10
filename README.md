@@ -1,10 +1,11 @@
 # AI 418 Project — YAM-HCI
  
 ## Team
-| Name | Student ID | Role this milestone |
-|Yousef Aldarraj|4510449|Leader|
-|Malek obaid alharby|4412110|TBD|
-|Abdullah Trabulsi|4410305|TBD|
+| Name | Student ID | Role This Milestone |
+| :--- | :--- | :--- |
+| **Yousef Aldarraj** | 4510449 | Leader |
+| **Malek Obaid Alharby** | 4412110 | TBD |
+| **Abdullah Trabulsi** | 4410305 | TBD |
  
 ## The problem
 One paragraph. A real task that real people do badly today.
