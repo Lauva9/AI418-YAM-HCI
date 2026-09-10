@@ -2,7 +2,9 @@
  
 ## Team
 | Name | Student ID | Role this milestone |
-|---|---|---|
+|Yousef Aldarraj|4510449|Leader|
+|Malek obaid alharby|4412110|TBD|
+|Abdullah Trabulsi|4410305|TBD|
  
 ## The problem
 One paragraph. A real task that real people do badly today.
