@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="CampusLend is a bilingual campus lending prototype for borrowing project equipment from fellow students.">
+<title>CampusLend | AI418 M2 clickable lo-fi prototype</title>
+<style>
+:root{color-scheme:light;--bg:#fff;--paper:#fff;--ink:#171717;--mid:#4b4b4b;--line:#777;--soft:#eee;--soft2:#f7f7f7;--dark:#242424}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font:16px/1.47 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif}
+button,input,select{font:inherit}button{cursor:pointer}
+.shell{max-width:478px;padding:14px 12px 28px;margin:auto}
+.phone{min-height:650px;border:2px solid var(--line);border-radius:23px;background:var(--paper);padding:16px;box-shadow:0 4px 0 #eee}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid #aaa;padding-bottom:12px;margin-bottom:14px}
+.brand{font-weight:850;letter-spacing:.02em;font-size:1.05rem}.brand small{display:block;color:var(--mid);font-weight:500;letter-spacing:0;font-size:.7rem}
+.langs{display:flex;direction:ltr;gap:5px}.langs button{min-height:38px;min-width:49px;border:1px solid #888;border-radius:8px;background:white;padding:5px 9px;font-size:.83rem;font-weight:750;color:#161616}.langs button[aria-pressed=true]{background:#232323;color:#fff}
+.eyebrow{color:var(--mid);font-size:.74rem;letter-spacing:.07em;text-transform:uppercase;margin:4px 0 7px}
+h1{font-size:1.37rem;line-height:1.3;margin:0 0 8px}h2{font-size:1rem;margin:16px 0 8px}p{margin:7px 0 11px}small,.small{font-size:.82rem}.muted{color:var(--mid);font-size:.9rem}.lead{font-size:.95rem}
+.card{border:1.5px solid var(--line);background:var(--soft);padding:13px;border-radius:9px;margin:10px 0}.card p{margin:5px 0}.card.isclick{display:block;width:100%;text-align:start;color:inherit;cursor:pointer}.card.isclick:hover{background:#ddd}
+.pill{display:inline-block;border:1px solid var(--line);border-radius:14px;padding:3px 8px;background:white;font-size:.75rem;font-weight:650;color:#222}.pill.status{border-style:dashed}.pill.bad{background:#ddd}
+.sectionnote{background:var(--soft2);padding:10px 12px;border-inline-start:4px solid #555;border-radius:5px;font-size:.87rem}
+label{display:block;margin:12px 0 5px;font-weight:720;font-size:.91rem}
+input[type=email],input[type=text],input[type=search],input[type=date],input[type=time]{display:block;width:100%;min-height:46px;border:2px solid #777;background:white;color:#111;border-radius:8px;padding:10px}
+input[type=date],input[type=time]{direction:ltr;text-align:left}input[aria-invalid=true]{border:2px dashed #222}
+.btn{display:block;width:100%;min-height:47px;margin:12px 0 8px;padding:11px 13px;border-radius:8px;border:2px solid #646464;background:#e6e6e6;color:#181818;text-align:center;font-weight:780;line-height:1.3}.btn:hover{background:#d6d6d6}.btn.primary{background:#252525;color:white;border-color:#252525}.btn.ghost{background:#fff}.btn.tiny{width:auto;min-height:39px;display:inline-block;margin:3px 5px 3px 0;padding:8px 12px;font-size:.83rem}
+.link{background:none;color:#171717;border:0;padding:10px 2px;min-height:44px;text-decoration:underline;text-underline-offset:3px;font-size:.93rem}.link:hover{background:#f0f0f0}
+.segment{display:flex;gap:0;margin:10px 0}.segment button{flex:1;min-height:44px;border:1.5px solid #777;background:white;color:#222;padding:9px 6px;font-size:.89rem}.segment button:first-child{border-radius:8px 0 0 8px}.segment button:last-child{border-radius:0 8px 8px 0}.segment button[aria-pressed=true]{background:#242424;color:white;font-weight:770}
+.filters{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.filter{border:1px solid #777;border-radius:17px;background:white;color:#222;padding:7px 10px;min-height:36px;font-size:.78rem}.filter[aria-pressed=true]{background:#242424;color:white}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}.summary{border-top:1px solid #aaa;padding:8px 0}.summary dt{display:block;font-size:.79rem;font-weight:750;color:#444}.summary dd{display:block;margin:2px 0 0;font-weight:400}
+.stepper{display:flex;justify-content:space-between;gap:6px;font-size:.73rem;color:#555;padding-bottom:12px;border-bottom:1px solid #bbb;margin-bottom:15px}.stepper span{padding:4px 6px;border:1px solid #bbb;border-radius:20px;white-space:nowrap}.stepper span.current{background:#252525;color:white;border-color:#252525}
+.alert{border:2px dashed #555;background:#f1f1f1;border-radius:8px;padding:12px;margin:13px 0}.alert.error{border-style:solid;background:#f4f4f4}.alert[hidden]{display:none}
+.bar{margin:13px 0 5px;display:flex;align-items:center;gap:10px;justify-content:space-between}.count{color:#4b4b4b;font-size:.84rem}
+.navfoot{display:flex;gap:8px;padding-top:13px;border-top:1px solid #bbb;margin-top:22px}.navfoot button{flex:1;border:1px solid #666;border-radius:8px;background:#fff;min-height:44px;font-size:.88rem;font-weight:650;color:#222}.navfoot button.active{background:#262626;color:#fff}
+.callout{display:inline-flex;align-items:center;justify-content:center;border:1.5px solid #555;background:#fff;color:#222;border-radius:50%;min-width:22px;height:22px;padding:0 4px;font-size:11px;margin-inline:5px;font-weight:850}.legend{font-size:.79rem;color:#555;border-top:1px dotted #999;margin-top:15px;padding-top:8px}
+.mini{font-size:.8rem}.actions{display:flex;gap:8px;flex-wrap:wrap}.actions .btn{flex:1}.empty{border:1px dashed #888;background:#fafafa;border-radius:8px;padding:16px;margin:12px 0}.item-title{font-size:1rem;font-weight:790}.request-heading{font-size:1rem;margin:5px 0 10px;line-height:1.4}.mono{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;display:inline-block}
+.demo{border-top:1px solid #aaa;padding:12px 5px 0;margin:18px 4px 0;color:#404040;font-size:.84rem}.demo summary{cursor:pointer;font-weight:750;min-height:44px;display:flex;align-items:center}.demo label{font-size:.84rem;font-weight:550;display:flex;gap:9px;align-items:start}.demo input[type=checkbox]{width:19px;height:19px;accent-color:#333;flex:none}.demo .btn{font-size:.86rem;min-height:42px}.keys{display:flex;gap:6px;flex-wrap:wrap}.keys code{font-size:.76rem;border:1px solid #bbb;padding:3px 5px;background:#f5f5f5}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important;clip-path:inset(50%)!important}
+:focus-visible{outline:3px solid #161616!important;outline-offset:3px}
+[dir=rtl] .top,[dir=rtl] .bar,[dir=rtl] .navfoot{direction:rtl}[dir=rtl] .langs{direction:ltr}[dir=rtl] .card.isclick{text-align:right}[dir=rtl] .segment{direction:rtl}[dir=rtl] .segment button:first-child{border-radius:0 8px 8px 0}[dir=rtl] .segment button:last-child{border-radius:8px 0 0 8px}
+@media(max-width:345px){.cols{grid-template-columns:1fr}.phone{padding:12px}.stepper{flex-wrap:wrap}.shell{padding:8px}}
+@media print{.demo{display:none}.shell{margin:0}.phone{box-shadow:none}}
+</style>
+</head>
+<body>
+<main class="shell">
+<div class="phone" id="phone">
+<header class="top"><div class="brand">CampusLend<small>AI 418 · Interactive lo-fi</small></div><nav class="langs" aria-label="Language / اللغة"><button id="en-lang" type="button" data-lang="en" aria-pressed="true">EN</button><button id="ar-lang" type="button" data-lang="ar" lang="ar" aria-pressed="false">عربي</button></nav></header>
+<div id="app" aria-live="off"></div>
+<div id="route-announcer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+<nav id="navfoot" class="navfoot" hidden aria-label="Main navigation"></nav>
+</div>
+<details class="demo"><summary>Prototype testing / اختبار النموذج</summary>
+<label><input type="checkbox" id="simulate-conflict"><span>Simulate “just borrowed” on the next confirmation / محاكاة تعذر الاستعارة عند التأكيد</span></label>
+<p>Use this checkbox to demonstrate the E1 error recovery; all other interactions are local demo behavior.</p>
+<button class="btn ghost" type="button" id="reset-demo">Reset demo / إعادة ضبط</button>
+<div class="keys" aria-label="Screens"><code>S0 Login</code><code>S1 Home</code><code>S2 Details</code><code>S3 Dates</code><code>S4 Review</code><code>S5 Sent</code><code>S6 My Requests</code><code>E1 Error</code></div>
+<p class="mini">Sample tools, users and statuses are fictional. No real university login, loan, message, reminder or account is created.</p>
+</details>
+</main>
+<script>
+(function(){'use strict';
+const DAY=86400000;
+const tools=[
+{id:'pi4-sara',name:'Raspberry Pi 4 (4 GB)',lender:['Sara','سارة'],dept:['Computer Engineering','هندسة الحاسب'],condition:['Good; power cable included','جيدة؛ يتوفر سلك الطاقة'],location:['Labs building · Gate 2','مبنى المختبرات · البوابة ٢'],campus:true,available:true,category:'pi',days:7},
+{id:'pi4-nora',name:'Raspberry Pi 4 (4 GB)',lender:['Nora','نورة'],dept:['Artificial Intelligence','الذكاء الاصطناعي'],condition:['Good; no power adapter','جيدة؛ دون محول طاقة'],location:['Engineering building','مبنى الهندسة'],campus:true,available:false,category:'pi',days:7},
+{id:'arduino-omar',name:'Arduino Uno R3 + USB',lender:['Omar','عمر'],dept:['Computer Science','علوم الحاسب'],condition:['Good; cable included','جيدة؛ مع سلك USB'],location:['Labs building · Gate 1','مبنى المختبرات · البوابة ١'],campus:true,available:true,category:'arduino',days:7},
+{id:'esp32-rana',name:'ESP32 Starter Kit',lender:['Rana','رنا'],dept:['Artificial Intelligence','الذكاء الاصطناعي'],condition:['Good; breadboard included','جيدة؛ مع لوحة تجارب'],location:['University neighborhood','الحي الجامعي'],campus:false,available:true,category:'kit',days:5},
+{id:'pi4-ali',name:'Raspberry Pi 4 (2 GB)',lender:['Ali','علي'],dept:['Computer Science','علوم الحاسب'],condition:['Good; no SD card','جيدة؛ دون بطاقة ذاكرة'],location:['Labs building · Gate 1','مبنى المختبرات · البوابة ١'],campus:true,available:true,category:'pi',days:7,alternative:true},
+{id:'pi3-huda',name:'Raspberry Pi 3 B+',lender:['Huda','هدى'],dept:['Artificial Intelligence','الذكاء الاصطناعي'],condition:['Fair; adapter included','مقبولة؛ مع محول طاقة'],location:['Engineering building','مبنى الهندسة'],campus:true,available:true,category:'pi',days:7,alternative:true},
+{id:'pi4-mona',name:'Raspberry Pi 4 (4 GB)',lender:['Mona','منى'],dept:['Computer Engineering','هندسة الحاسب'],condition:['Good; case included','جيدة؛ مع غطاء'],location:['Library entrance','مدخل المكتبة'],campus:true,available:true,category:'pi',days:7,alternative:true},
+{id:'arduino-leen',name:'Arduino Nano + cable',lender:['Leen','لين'],dept:['Computer Science','علوم الحاسب'],condition:['Good; cable included','جيدة؛ مع سلك'],location:['Labs building · Gate 3','مبنى المختبرات · البوابة ٣'],campus:true,available:true,category:'arduino',days:7,alternative:true},
+{id:'arduino-fahad',name:'Arduino Mega 2560',lender:['Fahad','فهد'],dept:['Engineering','الهندسة'],condition:['Good','جيدة'],location:['Engineering building','مبنى الهندسة'],campus:true,available:true,category:'arduino',days:7,alternative:true},
+{id:'breadboard-maha',name:'Breadboard + jumper wires',lender:['Maha','مها'],dept:['Computer Science','علوم الحاسب'],condition:['Good','جيدة'],location:['Library entrance','مدخل المكتبة'],campus:true,available:true,category:'kit',days:5,alternative:true}
+];
+const byId=Object.fromEntries(tools.map(t=>[t.id,t]));
+const T={
+ en:{login:'Login / Sign Up',headline:'Borrow tech tools from students',intro:'Find Arduino, Raspberry Pi and lab equipment for your projects.',loginTab:'Log in',signupTab:'Sign up',name:'Your name',email:'University email',enter:'Enter CampusLend',create:'Create demo account',quick:'Continue as demo student',demoAuth:'Offline prototype only. No password is requested or checked. Do not enter your real password.',needEmail:'Enter a valid university email (for example, student@university.edu.sa).',needName:'Enter your name to continue.',home:'Home / Browse Tools',find:'Find the equipment you need',browse:'Borrowed directly from other students. Each request needs lender approval.',search:'Search tools',searchHint:'Search Raspberry Pi, Arduino, ESP32…',now:'Available now',campus:'On campus',week:'This week',clear:'Clear filters',shown:'tools shown',empty:'No matching tools. Try another search or filter.',available:'Available',notAvailable:'Unavailable',lender:'Lender',condition:'Condition',pickup:'Pick-up place',max:'Max borrowing period',days:'days',details:'Tool Details',about:'Check the tool before borrowing',seeDates:'Choose borrowing dates',backHome:'Back to tools',dates:'Select Borrowing Dates',dateIntro:'Pick a convenient pick-up date, return date and time.',start:'Pick-up date',end:'Return date',time:'Pick-up time',review:'Review Request',reviewTitle:'Review before sending',calendar:'Display calendar',gregorian:'Gregorian',hijri:'Hijri',calHint:'Calendar format changes only how dates appear, not the days you selected.',editDates:'Change dates (saved)',send:'Confirm and send request',sent:'Request Sent',sentTitle:'Your request was sent',pending:'Waiting for lender approval',pendingDesc:'The lender has not approved the loan yet.',noReal:'This is a simulated request. No real student will be contacted.',requests:'My Requests',reqTitle:'Your borrowing requests',none:'No requests yet. Find a tool and send your first request.',cancel:'Cancel request',cancelAsk:'Cancel this request?',keep:'Keep request',confirmCancel:'Yes, cancel request',cancelled:'Cancelled',new:'Borrow another tool',viewReq:'View My Requests',backBrowse:'Browse tools',error:'Error / Alternative Tools',errorTitle:'That tool was just borrowed',errorDesc:'Another student borrowed this tool while you were reviewing. Select an available alternative; your chosen dates will stay saved.',alternatives:'Alternative tools',noAlts:'No similar tools are available. Go back to browse.',notify:'Notify me when it becomes available (demo)',notified:'Reminder saved in this prototype only.',selection:'Selected tool',selectionNote:'The alternative lender and item are updated, and your dates are retained.',invalid:'Check your dates.',reqFields:'Select both dates and a time.',past:'Pick-up cannot be in the past.',order:'Return must be after the pick-up date.',period:'Return must be within the tool’s maximum borrowing period.',success:'Request recorded in this browser demo.',cant:'This tool is no longer available.',status:'Status',hello:'Student',how:'How to test the error',errorExplain:'Check “Simulate just borrowed” under the phone before pressing Confirm on Review.',count:'Requests',note:'Demo interface: no login, message, or loan is sent to a server.', signout:'Sign out',cancelTip:'Cancelled requests stay visible in your history.',noStatus:'Choose a tool to start.', returnToReview:'Back to review', homeNav:'Home',myNav:'My Requests'},
+ ar:{login:'تسجيل الدخول / إنشاء حساب',headline:'استعر الأدوات التقنية من طلاب الجامعة',intro:'ابحث عن Arduino وRaspberry Pi ومستلزمات المختبر لمشاريعك.',loginTab:'دخول',signupTab:'حساب جديد',name:'الاسم',email:'البريد الجامعي',enter:'الدخول إلى CampusLend',create:'إنشاء حساب تجريبي',quick:'الدخول كطالب تجريبي',demoAuth:'هذا نموذج يعمل دون اتصال. لا نطلب كلمة مرور ولا نتحقق منها. لا تدخل كلمة مرور حقيقية.',needEmail:'أدخل بريداً جامعياً صحيحاً مثل student@university.edu.sa.',needName:'اكتب اسمك للمتابعة.',home:'الرئيسية / تصفح الأدوات',find:'ابحث عن الأداة التي تحتاجها',browse:'تستعير الأدوات مباشرةً من الطلاب، وكل طلب يحتاج موافقة صاحب الأداة.',search:'البحث عن الأدوات',searchHint:'ابحث عن Raspberry Pi أو Arduino أو ESP32…',now:'متاح الآن',campus:'داخل الجامعة',week:'هذا الأسبوع',clear:'مسح التصفية',shown:'أدوات معروضة',empty:'لا توجد أدوات مطابقة. جرّب البحث أو غيّر التصفية.',available:'متاح',notAvailable:'غير متاح',lender:'صاحب الأداة',condition:'الحالة',pickup:'مكان الاستلام',max:'الحد الأقصى للاستعارة',days:'أيام',details:'تفاصيل الأداة',about:'تحقق من معلومات الأداة قبل استعارتها',seeDates:'اختيار مواعيد الاستعارة',backHome:'العودة إلى الأدوات',dates:'تحديد مواعيد الاستعارة',dateIntro:'اختر تاريخ ووقت الاستلام وتاريخ الإرجاع المناسبين.',start:'تاريخ الاستلام',end:'تاريخ الإرجاع',time:'وقت الاستلام',review:'مراجعة الطلب',reviewTitle:'راجع البيانات قبل الإرسال',calendar:'طريقة عرض التاريخ',gregorian:'ميلادي',hijri:'هجري',calHint:'يتغير شكل عرض التاريخ فقط، ولا تتغير الأيام المختارة.',editDates:'تعديل المواعيد (محفوظة)',send:'تأكيد وإرسال الطلب',sent:'تم إرسال الطلب',sentTitle:'أُرسل طلب الاستعارة',pending:'بانتظار موافقة صاحب الأداة',pendingDesc:'لم تتم الموافقة على الاستعارة بعد.',noReal:'هذا طلب تجريبي، ولن تصل رسالة إلى طالب حقيقي.',requests:'طلباتي',reqTitle:'متابعة طلبات الاستعارة',none:'لا توجد طلبات بعد. ابحث عن أداة وقدّم أول طلب.',cancel:'إلغاء الطلب',cancelAsk:'هل تريد إلغاء هذا الطلب؟',keep:'الاحتفاظ بالطلب',confirmCancel:'نعم، إلغاء الطلب',cancelled:'ملغي',new:'استعارة أداة أخرى',viewReq:'عرض طلباتي',backBrowse:'تصفح الأدوات',error:'خطأ / أدوات بديلة',errorTitle:'تم استعارة هذه الأداة للتو',errorDesc:'استعار طالب آخر هذه الأداة أثناء مراجعتك للطلب. اختر بديلاً متاحاً وستبقى مواعيدك محفوظة.',alternatives:'الأدوات البديلة',noAlts:'لا توجد أدوات مشابهة متاحة. ارجع لتصفح الأدوات.',notify:'تذكيري عند توفرها (تجريبي)',notified:'تم حفظ التذكير داخل النموذج فقط.',selection:'الأداة المختارة',selectionNote:'تغيرت الأداة وصاحبها، وبقيت مواعيدك محفوظة.',invalid:'تحقق من صحة التواريخ.',reqFields:'اختر التاريخين والوقت.',past:'لا يمكن الاستلام في تاريخ سابق.',order:'يجب أن يكون الإرجاع بعد تاريخ الاستلام.',period:'يجب أن يكون الإرجاع ضمن المدة المسموحة للأداة.',success:'تم تسجيل الطلب داخل النموذج التجريبي.',cant:'هذه الأداة لم تعد متاحة.',status:'الحالة',hello:'طالب',how:'تجربة حالة الخطأ',errorExplain:'فعّل «محاكاة تعذر الاستعارة» أسفل الهاتف قبل تأكيد الطلب في شاشة المراجعة.',count:'طلبات',note:'نموذج تجريبي: لا يُرسل تسجيل دخول أو رسالة أو استعارة إلى أي خادم.',signout:'تسجيل الخروج',cancelTip:'تبقى الطلبات الملغاة ضمن السجل.',noStatus:'اختر أداة للبدء.',returnToReview:'العودة للمراجعة',homeNav:'الرئيسية',myNav:'طلباتي'}
+};
+const state={lang:'en',screen:'login',auth:false,authMode:'login',user:'',email:'',tool:'pi4-sara',start:'',end:'',time:'12:30',calendar:'gregorian',query:'',filters:{now:false,campus:false,week:false},unavailable:new Set(),original:'pi4-sara',requests:[],nextRequest:1,cancelId:null,notice:''};
+const $=s=>document.querySelector(s), app=$('#app');
+function L(k){return T[state.lang][k]}function ar(){return state.lang==='ar'}
+function safe(v){return String(v).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))}
+function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function plusDays(s,days){const [y,m,d]=s.split('-').map(Number);return iso(new Date(y,m-1,d+days,12))}
+function today(){return iso(new Date())}
+function daysBetween(a,b){return Math.round((Date.parse(b+'T12:00:00Z')-Date.parse(a+'T12:00:00Z'))/DAY)}
+function dateFmt(s){if(!s)return '—';const [y,m,d]=s.split('-').map(Number);const opts={weekday:'short',day:'numeric',month:'short',year:'numeric'};const locale=ar()?'ar-SA':'en-GB';const cal=state.calendar==='hijri'?'-u-ca-islamic-umalqura':'-u-ca-gregory';try{return new Intl.DateTimeFormat(locale+cal,opts).format(new Date(y,m-1,d,12))}catch(_){return s}}
+function timeFmt(t){if(!t)return '—';const [hh,mm]=t.split(':').map(Number);return new Intl.DateTimeFormat(ar()?'ar-SA':'en-GB',{hour:'numeric',minute:'2-digit',hour12:true}).format(new Date(2026,0,1,hh,mm))}
+function idx(){return ar()?1:0}function name(t){return t.name}function who(t){return t.lender[idx()]}function where(t){return t.location[idx()]}
+function avail(t){return t.available&&!state.unavailable.has(t.id)}
+function mark(n){return `<span class="callout" aria-hidden="true">${n}</span>`}
+function btn(text,action,cls='primary',extra=''){return `<button type="button" class="btn ${cls}" data-action="${safe(action)}" ${extra}>${text}</button>`}
+function link(text,screen){return `<button type="button" class="link" data-go="${screen}">${text}</button>`}
+function heading(id,title,subtitle=''){return `<p class="eyebrow">${safe(id)} · ${safe(L(title))}</p><h1 id="screen-title" tabindex="-1" aria-describedby="screen-overview">${safe(L(title))}${subtitle}</h1>`}
+function stepper(){const labels=ar()?['الأداة','الموعد','المراجعة','الإرسال']:['Tool','Dates','Review','Sent'];const ids=['details','dates','review','sent'];const active=ids.indexOf(state.screen);return `<div class="stepper" role="group" aria-label="${ar()?'خطوات الاستعارة':'Borrowing steps'}">${labels.map((s,i)=>`<span ${i===active?'class="current" aria-current="step"':''}>${i+1}. ${s}</span>`).join('')}</div>`}
+function fieldLine(label,value){return `<dl class="summary"><dt>${safe(label)}</dt><dd>${safe(value)}</dd></dl>`}
+function toolCard(t,mode){const available=avail(t), status=`<span class="pill status ${available?'':'bad'}">${safe(L(available?'available':'notAvailable'))}</span>`;const body=`<div class="bar"><strong class="item-title" dir="auto">${safe(name(t))}</strong>${mark(2)}</div><p>${status} · ${safe(L('lender'))}: ${safe(who(t))}</p><p class="muted">${safe(where(t))} · ${t.days} ${safe(L('days'))}</p>`;return mode==='static'||!available?`<div class="card">${body}</div>`:`<button type="button" data-select="${t.id}" class="card isclick" aria-label="${safe(name(t))}: ${safe(L('available'))}, ${safe(who(t))}">${body}</button>`}
+function datesCard(t){return `<div class="card"><div class="bar"><h2 class="request-heading" dir="auto">${safe(name(t))}</h2>${mark(6)}</div><p class="muted">${safe(L('lender'))}: ${safe(who(t))}</p>${fieldLine(L('start'),dateFmt(state.start)+' · '+timeFmt(state.time))}${fieldLine(L('end'),dateFmt(state.end))}${fieldLine(L('pickup'),where(t))}</div>`}
+function renderLogin(){const signup=state.authMode==='signup';return `${heading('S0','login')}<p class="lead">${safe(L('headline'))}</p><p class="muted">${safe(L('intro'))}</p><div class="segment" role="group" aria-label="${ar()?'نوع الحساب':'Account mode'}">${btnMode('login','loginTab')}${btnMode('signup','signupTab')}</div><form id="auth-form" novalidate>${signup?`<label for="user-name">${L('name')} ${mark(1)}</label><input id="user-name" type="text" autocomplete="name" value="${safe(state.user)}" placeholder="${ar()?'مثال: سارة':'e.g. Sara'}">`:''}<label for="user-email">${L('email')} ${mark(1)}</label><input id="user-email" type="email" inputmode="email" autocomplete="email" value="${safe(state.email)}" placeholder="student@university.edu.sa"><p id="auth-error" class="alert error" role="alert" hidden></p><button type="submit" class="btn primary">${L(signup?'create':'enter')}</button></form>${btn(L('quick'),'demo-login','ghost')}<p class="sectionnote">${safe(L('demoAuth'))}</p>`}
+function btnMode(id,label){return `<button type="button" data-mode="${id}" aria-pressed="${state.authMode===id}">${L(label)}</button>`}
+function renderHome(){const matches=tools.filter(t=>!t.alternative).filter(t=>!state.filters.now||avail(t)).filter(t=>!state.filters.campus||t.campus).filter(t=>!state.filters.week||avail(t)).filter(t=>(t.name+' '+t.lender.join(' ')+' '+t.location.join(' ')).toLowerCase().includes(state.query.trim().toLowerCase()));return `${heading('S1','home')}<p class="lead">${L('find')}</p><p class="muted">${L('browse')}</p><label for="search">${L('search')} ${mark(3)}</label><input type="search" id="search" value="${safe(state.query)}" placeholder="${safe(L('searchHint'))}"><div class="filters" role="group" aria-label="${safe(L('search'))}">${[['now','now'],['campus','campus'],['week','week']].map(([id,label])=>`<button class="filter" type="button" data-filter="${id}" aria-pressed="${state.filters[id]}">${L(label)}</button>`).join('')}</div><div class="bar"><span class="count" id="result-count" aria-live="polite">${matches.length} ${L('shown')}</span><button class="link" type="button" data-action="clear-filters">${L('clear')}</button></div>${state.notice?`<p class="alert" role="status">${safe(state.notice)}</p>`:''}<div id="tool-list">${matches.length?matches.map(t=>toolCard(t)).join(''):`<p class="empty">${L('empty')}</p>`}</div><p class="legend">${mark(2)} ${ar()?'حالة التوفر وصاحب الأداة':'Availability and owner'} &nbsp;${mark(3)} ${L('search')}</p>`}
+function renderDetails(){const t=byId[state.tool];return `${stepper()}${heading('S2','details')}<p class="muted">${L('about')}</p><div class="card"><div class="bar"><strong class="item-title" dir="auto">${safe(t.name)}</strong>${mark(4)}</div>${fieldLine(L('lender'),who(t)+' · '+t.dept[idx()])}${fieldLine(L('condition'),t.condition[idx()])}${fieldLine(L('pickup'),where(t))}${fieldLine(L('max'),t.days+' '+L('days'))}</div>${btn(L('seeDates'),'dates')}${link(L('backHome'),'home')}`}
+function renderDates(){const t=byId[state.tool];return `${stepper()}${heading('S3','dates')}<p class="muted">${L('dateIntro')}</p><div class="card"><strong dir="auto">${safe(t.name)}</strong><p class="muted">${L('max')}: ${t.days} ${L('days')}</p></div><form id="date-form" novalidate><div class="cols"><div><label for="start">${L('start')} ${mark(5)}</label><input type="date" id="start" name="start" min="${today()}" value="${safe(state.start)}" required></div><div><label for="end">${L('end')}</label><input type="date" id="end" name="end" min="${today()}" value="${safe(state.end)}" required></div></div><label for="time">${L('time')}</label><input type="time" id="time" name="time" value="${safe(state.time)}" required><p id="date-error" class="alert error" role="alert" hidden></p><button type="submit" class="btn primary">${L('review')}</button></form>${link(L('details'),'details')}`}
+function renderReview(){const t=byId[state.tool];return `${stepper()}${heading('S4','review')}<p class="lead">${L('reviewTitle')}</p>${datesCard(t)}<h2>${L('calendar')} ${mark(7)}</h2><div class="segment" role="group" aria-label="${L('calendar')}"><button type="button" data-calendar="gregorian" aria-pressed="${state.calendar==='gregorian'}">${L('gregorian')}</button><button type="button" data-calendar="hijri" aria-pressed="${state.calendar==='hijri'}">${L('hijri')}</button></div><p class="muted">${L('calHint')}</p>${btn(L('send')+' '+mark(8),'confirm')}${link(L('editDates'),'dates')}<p class="sectionnote">${L('pendingDesc')}</p>`}
+function renderSent(){const r=state.requests.find(r=>r.id===state.latestRequest);if(!r)return renderRequests();const t=byId[r.tool];return `${stepper()}${heading('S5','sent')}<p class="alert" role="status">✓ ${L('sentTitle')}. ${L('pending')} ${mark(8)}</p><div class="card"><p><strong>${safe(r.id)}</strong> · <span class="pill">${L('pending')}</span></p><h2 class="request-heading" dir="auto">${safe(t.name)}</h2><p class="muted">${L('lender')}: ${safe(who(t))}</p>${fieldLine(L('start'),dateFmt(r.start)+' · '+timeFmt(r.time))}${fieldLine(L('end'),dateFmt(r.end))}${fieldLine(L('pickup'),where(t))}</div><p class="muted">${L('noReal')}</p>${btn(L('viewReq'),'requests')}${btn(L('new'),'home','ghost')}`}
+function renderRequests(){const items=[...state.requests].reverse();return `${heading('S6','requests')}<p class="muted">${L('reqTitle')} ${mark(9)}</p>${items.length?items.map(r=>{const t=byId[r.tool];return `<article class="card" aria-label="${safe(r.id)}"><div class="bar"><h2 class="request-heading">${safe(r.id)}</h2><span class="pill status ${r.status==='cancelled'?'bad':''}">${L(r.status==='pending'?'pending':'cancelled')}</span></div><strong dir="auto">${safe(t.name)}</strong><p class="muted">${L('lender')}: ${safe(who(t))}</p>${fieldLine(L('start'),dateFmt(r.start)+' · '+timeFmt(r.time))}${fieldLine(L('end'),dateFmt(r.end))}${r.status==='pending'?state.cancelId===r.id?`<div class="alert"><strong>${L('cancelAsk')}</strong><div class="actions">${btn(L('confirmCancel'),'cancel:'+r.id,'ghost tiny')}${btn(L('keep'),'keep','ghost tiny')}</div></div>`:`<button type="button" class="link" data-action="ask-cancel:${safe(r.id)}">${L('cancel')}</button>`:''}</article>`}).join(''):`<p class="empty">${L('none')}</p>`}<p class="muted mini">${L('cancelTip')}</p>${btn(L('new'),'home')}`}
+function renderError(){const lost=byId[state.original],alt=tools.filter(t=>t.alternative&&t.category===lost.category&&avail(t)).slice(0,3);return `${heading('E1','error')}<p class="alert error" role="alert">${L('errorDesc')} ${mark(10)}</p><div class="card"><strong>${L('selection')}: </strong><span dir="auto">${safe(lost.name)}</span><p class="muted">${L('start')}: ${safe(dateFmt(state.start))} · ${L('end')}: ${safe(dateFmt(state.end))}</p></div><h2>${L('alternatives')} ${mark(11)}</h2>${alt.length?alt.map(t=>toolCard(t)).join(''):`<p class="empty">${L('noAlts')}</p>`}${btn(L('notify'),'notify','ghost')}${link(L('backBrowse'),'home')}<p class="sectionnote">${L('selectionNote')}</p>`}
+// A stable live region and a description attached to the newly focused heading.
+// This fixes the silent transitions caused by replacing #app on every screen change.
+let announcementToken=0;
+function screenOverview(){
+  const t=byId[state.tool];
+  const selected=t?`${t.name}. ${L('lender')}: ${who(t)}. ${L('pickup')}: ${where(t)}.`:'';
+  const timing=`${L('start')}: ${dateFmt(state.start)}, ${timeFmt(state.time)}. ${L('end')}: ${dateFmt(state.end)}.`;
+  switch(state.screen){
+    case 'login': return `${L('headline')}. ${L('demoAuth')}`;
+    case 'home': return `${L('find')}. ${L('browse').replace(/[.。]\s*$/,'')}. ${L('search')}.`;
+    case 'details': return `${selected} ${L('condition')}: ${t.condition[idx()]}. ${L('max')}: ${t.days} ${L('days')}. ${L('seeDates')}.`;
+    case 'dates': return `${t.name}. ${timing} ${L('max')}: ${t.days} ${L('days')}. ${L('review')}.`;
+    case 'review': return `${L('reviewTitle')}. ${selected} ${timing} ${L('pendingDesc')} ${L('send')}.`;
+    case 'sent': {
+      const r=state.requests.find(q=>q.id===state.latestRequest);
+      if(!r)return L('none');
+      const rt=byId[r.tool];
+      return `${L('sentTitle')}. ${r.id}. ${L('pending')}. ${rt.name}. ${L('lender')}: ${who(rt)}. ${L('start')}: ${dateFmt(r.start)}, ${timeFmt(r.time)}. ${L('end')}: ${dateFmt(r.end)}. ${L('pickup')}: ${where(rt)}. ${L('viewReq')}.`;
+    }
+    case 'requests': {
+      if(!state.requests.length)return L('none');
+      const recent=[...state.requests].reverse();
+      const each=recent.slice(0,3).map(r=>{
+        const rt=byId[r.tool];
+        return `${r.id}. ${rt.name}. ${L(r.status==='pending'?'pending':'cancelled')}. ${L('start')}: ${dateFmt(r.start)}. ${L('end')}: ${dateFmt(r.end)}.`;
+      }).join(' ');
+      return `${L('reqTitle')}. ${ar()?'عدد الطلبات: '+recent.length:recent.length+' '+(recent.length===1?'request':'requests')}. ${each}`;
+    }
+    case 'error': return `${L('errorDesc')} ${L('selection')}: ${byId[state.original].name}. ${timing} ${L('alternatives')}.`;
+  }
+  return '';
+}
+function routeAnnouncement(overview){
+  const token=++announcementToken;
+  const region=$('#route-announcer');
+  region.textContent='';
+  region.lang=state.lang;
+  region.dir=ar()?'rtl':'ltr';
+  // VoiceOver/Safari generally needs the updated route to have settled in the DOM
+  // before its persistent live region receives a new message.
+  setTimeout(()=>{
+    if(token===announcementToken)region.textContent=`${L(state.screen)}. ${overview}`;
+  },160);
+}
+function announceUpdate(message){
+  const token=++announcementToken;
+  const region=$('#route-announcer');
+  region.textContent='';region.lang=state.lang;region.dir=ar()?'rtl':'ltr';
+  setTimeout(()=>{if(token===announcementToken)region.textContent=message},80);
+}
+function navControls(){const allowed=state.auth;$('#navfoot').hidden=!allowed;if(!allowed){$('#navfoot').innerHTML='';return}const active=state.screen==='requests'?'requests':'home';$('#navfoot').setAttribute('aria-label',ar()?'التنقل الرئيسي':'Main navigation');$('#navfoot').innerHTML=`<button type="button" data-go="home" class="${active==='home'?'active':''}" aria-current="${active==='home'?'page':'false'}">⌂ ${L('homeNav')}</button><button type="button" data-go="requests" class="${active==='requests'?'active':''}" aria-current="${active==='requests'?'page':'false'}">☷ ${L('myNav')} (${state.requests.length})</button><button type="button" data-action="signout">↪ ${L('signout')}</button>`}
+function render(focus=true, announcePage=false){document.documentElement.lang=state.lang;document.documentElement.dir=ar()?'rtl':'ltr';$('#phone').dir=ar()?'rtl':'ltr';$('#en-lang').setAttribute('aria-pressed',String(!ar()));$('#ar-lang').setAttribute('aria-pressed',String(ar()));if(!state.auth&&state.screen!=='login')state.screen='login';const renderers={login:renderLogin,home:renderHome,details:renderDetails,dates:renderDates,review:renderReview,sent:renderSent,requests:renderRequests,error:renderError};const overview=screenOverview();app.innerHTML=`<section id="active-screen" role="region" aria-labelledby="screen-title"><p id="screen-overview" class="sr-only">${safe(overview)}</p>${(renderers[state.screen]||renderLogin)()}</section>`;document.title=`${L(state.screen)} | CampusLend`;navControls();if(focus){const h=$('#screen-title');if(h)h.focus({preventScroll:true});window.scrollTo(0,0)}if(announcePage)routeAnnouncement(overview)}
+const validScreens=['login','home','details','dates','review','sent','requests','error'];
+function go(screen,focus=true){if(!validScreens.includes(screen))return;if(!state.auth&&screen!=='login')screen='login';if(screen==='sent'&&!state.requests.length)screen='requests';state.screen=screen;render(focus,true);const hash='#'+screen;if(location.hash!==hash)history.replaceState(null,'',hash)}
+function setLang(lang){if(lang!=='en'&&lang!=='ar')return;if(state.screen==='dates')saveDateInput();if(state.screen==='home')saveSearch();if(state.screen==='login')saveAuth();state.lang=lang;render(true,true)}
+function authSubmit(){const name=$('#user-name'),email=$('#user-email');if(name)state.user=name.value.trim();state.email=email.value.trim();const e=$('#auth-error');let problem='';if(state.authMode==='signup'&&!state.user)problem=L('needName');else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.email)||!(/\.edu(\.sa)?$/i.test(state.email)))problem=L('needEmail');if(problem){e.textContent=problem;e.hidden=false;(state.authMode==='signup'&&!state.user?name:email).focus();return}state.auth=true;if(!state.user)state.user=state.email.split('@')[0];go('home')}
+function saveAuth(){const n=$('#user-name'),e=$('#user-email');if(n)state.user=n.value;if(e)state.email=e.value}
+function saveSearch(){const q=$('#search');if(q)state.query=q.value}
+function saveDateInput(){const a=$('#start'),b=$('#end'),c=$('#time');if(a)state.start=a.value;if(b)state.end=b.value;if(c)state.time=c.value}
+function dateValid(){saveDateInput();const a=state.start,b=state.end,t=byId[state.tool],now=new Date(),currentTime=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');let reason='';if(!a||!b||!state.time)reason=L('reqFields');else if(a<today()||(a===today()&&state.time<=currentTime))reason=L('past');else if(b<=a)reason=L('order');else if(daysBetween(a,b)>t.days)reason=L('period');if(reason){const e=$('#date-error');e.hidden=false;e.textContent=reason;const input=(!a||a<today()||(a===today()&&state.time<=currentTime))?$('#start'):(!b||b<=a||daysBetween(a,b)>t.days)?$('#end'):$('#time');input.setAttribute('aria-invalid','true');input.focus();return false}return true}
+function select(id){const t=byId[id];if(!t||!avail(t))return;state.tool=id;state.notice='';go('details')}
+function confirm(){const t=byId[state.tool];if(!t)return;if(!avail(t)||$('#simulate-conflict').checked){$('#simulate-conflict').checked=false;state.original=t.id;state.unavailable.add(t.id);go('error');return}const id='CL-'+String(state.nextRequest++).padStart(3,'0');state.requests.push({id,tool:t.id,start:state.start,end:state.end,time:state.time,status:'pending'});state.latestRequest=id;state.cancelId=null;go('sent')}
+function reset(){Object.assign(state,{lang:'en',screen:'login',auth:false,authMode:'login',user:'',email:'',tool:'pi4-sara',start:plusDays(today(),1),end:plusDays(today(),4),time:'12:30',calendar:'gregorian',query:'',filters:{now:false,campus:false,week:false},unavailable:new Set(),original:'pi4-sara',requests:[],nextRequest:1,cancelId:null,notice:''});$('#simulate-conflict').checked=false;go('login')}
+function homeRefresh(focusFilter){const q=$('#search');if(q)state.query=q.value;render(false);if(focusFilter){const b=app.querySelector('[data-filter="'+focusFilter+'"]');if(b){b.focus();return}}const n=$('#search');if(n){n.focus();n.setSelectionRange(n.value.length,n.value.length)}}
+document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+if(b.dataset.lang){setLang(b.dataset.lang);return}
+if(b.dataset.mode){saveAuth();state.authMode=b.dataset.mode;render();return}
+if(b.dataset.go){if(state.screen==='home')saveSearch();if(state.screen==='dates')saveDateInput();go(b.dataset.go);return}
+if(b.dataset.select){select(b.dataset.select);return}
+if(b.dataset.filter){state.filters[b.dataset.filter]=!state.filters[b.dataset.filter];homeRefresh(b.dataset.filter);return}
+if(b.dataset.calendar){
+  state.calendar=b.dataset.calendar;
+  const chosen=state.calendar;
+  render(false);
+  const selected=app.querySelector(`[data-calendar="${chosen}"]`);
+  if(selected)selected.focus({preventScroll:true});
+  announceUpdate(`${L('calendar')}: ${L(chosen)}. ${L('start')}: ${dateFmt(state.start)}. ${L('end')}: ${dateFmt(state.end)}.`);
+  return
+}
+const a=b.dataset.action;if(!a)return;
+if(a==='demo-login'){state.auth=true;state.email='student@university.edu.sa';state.user=ar()?'طالب تجريبي':'Demo Student';go('home');return}
+if(a==='clear-filters'){state.filters={now:false,campus:false,week:false};state.query='';render();return}
+if(a==='dates'){go('dates');return}
+if(a==='confirm'){confirm();return}
+if(a==='home'){go('home');return}
+if(a==='requests'){go('requests');return}
+if(a==='signout'){state.auth=false;state.cancelId=null;go('login');return}
+if(a==='notify'){state.notice=L('notified');go('home');return}
+if(a.startsWith('ask-cancel:')){state.cancelId=a.slice('ask-cancel:'.length);render(false);const c=app.querySelector('[data-action^="cancel:"]');if(c)c.focus();announceUpdate(L('cancelAsk'));return}
+if(a.startsWith('cancel:')){const req=state.requests.find(r=>r.id===a.slice('cancel:'.length));if(req&&req.status==='pending')req.status='cancelled';state.cancelId=null;render(false);const h=$('#screen-title');if(h)h.focus();announceUpdate(`${L('cancelled')}. ${L('reqTitle')}.`);return}
+if(a==='keep'){state.cancelId=null;render(false);const h=$('#screen-title');if(h)h.focus();announceUpdate(L('keep'));return}
+});
+document.addEventListener('input',e=>{if(e.target.id==='search'){const pos=e.target.selectionStart;state.query=e.target.value;render(false);const input=$('#search');input.focus();input.setSelectionRange(pos,pos)}});
+document.addEventListener('submit',e=>{if(e.target.id==='auth-form'){e.preventDefault();authSubmit()}if(e.target.id==='date-form'){e.preventDefault();if(dateValid())go('review')}});
+$('#reset-demo').addEventListener('click',reset);
+window.addEventListener('hashchange',()=>{const value=location.hash.slice(1);if(validScreens.includes(value))go(value)});
+state.start=plusDays(today(),1);state.end=plusDays(today(),4);
+if(location.hash){const initial=location.hash.slice(1);if(validScreens.includes(initial))state.screen=initial}
+render(true,true);
+})();
+</script>
+</body>
+</html>
